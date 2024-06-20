@@ -1,6 +1,13 @@
-﻿namespace PECANO.API.Mapping
+﻿using AutoMapper;
+using PECANO.API.Domain.Models;
+using PECANO.API.Resources;
+
+namespace PECANO.API.Mapping
 {
-    public class ModelToResource
+    public class ModelToResource:Profile
     {
+        public ModelToResource() { 
+            CreateMap<Trabajador, TrabajadorResource>();
+        }
     }
 }

@@ -5,6 +5,6 @@ namespace PECANO.API.Domain.Repository
     public interface ITrabajadorRepository
     {
         Task<IEnumerable<Trabajador>> ListAsync();
-        Task<Trabajador> FindByIdAsync(int id);
+        Task<Trabajador> FindByDNIAsync(string dni);
     }
 }

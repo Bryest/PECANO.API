@@ -9,6 +9,5 @@ namespace PECANO.API.Domain.Models
         public int días_laborados { get; set; }
         public int faltas { get; set; }
         public int tipo_de_trabajador { get; set; }
-
     }
 }
