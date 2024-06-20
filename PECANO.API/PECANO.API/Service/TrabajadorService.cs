@@ -34,7 +34,7 @@ namespace PECANO.API.Service
                     var line = reader.ReadLine();
                     var values = line.Split('|');
 
-                    var _horasLaboradas = decimal.Parse(values[1], CultureInfo.InvariantCulture);
+                    var _horasLaboradas = int.Parse(values[1], CultureInfo.InvariantCulture);
                     var _diasLaborados = int.Parse(values[2], CultureInfo.InvariantCulture);
                     var _faltas = int.Parse(values[3], CultureInfo.InvariantCulture);
                     var _tipoTrabajador = (TipoTrabajador)Enum.Parse(typeof(TipoTrabajador), values[4]);
@@ -46,7 +46,7 @@ namespace PECANO.API.Service
                         DiasLaborados = _diasLaborados,
                         Faltas = _faltas,
                         TipoTrabajador = _tipoTrabajador,
-                        Sueldo = _calculoSueldoContext.CalcularSueldo(_tipoTrabajador, _horasLaboradas, _diasLaborados)
+                        Sueldo = _calculoSueldoContext.CalcularSueldo(_tipoTrabajador, _horasLaboradas, _diasLaborados, _faltas)
                         
                     };
 

@@ -17,10 +17,10 @@ namespace PECANO.API.Util
                 { TipoTrabajador.Gerente, gerenteStrategy }
             };
         }
-
-        public decimal CalcularSueldo(TipoTrabajador tipo, decimal horas, int dias)
+        
+        public decimal CalcularSueldo(TipoTrabajador tipoTrabajador, int horasLaboradas, int diasLaborados, int faltas)
         {
-            return _strategies[tipo].CalcularSueldo(horas, dias);
+            return _strategies[tipoTrabajador].CalcularSueldo(horasLaboradas, diasLaborados, faltas);
         }
     }
 }
