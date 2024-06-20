@@ -1,17 +1,15 @@
-using PECANO.API.Shared.CSV;
+using PECANO.API.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddSingleton<TrabajadorService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddSingleton<CsvReaderService>();
-builder.Services.AddAutoMapper(
-    typeof(PECANO.API.Mapping.ModelToResource));
 
 var app = builder.Build();
 
