@@ -1,4 +1,6 @@
 ﻿using System.Globalization;
+using System.IO;
+using PECANO.API.Dto;
 using PECANO.API.Models;
 using PECANO.API.Util;
 
@@ -6,7 +8,7 @@ namespace PECANO.API.Service
 {
     public class TrabajadorService
     {
-        private readonly List<Trabajador> _trabajadores;
+        private readonly List<TrabajadorDto> _trabajadores;
         private readonly CalculoSueldoContext _calculoSueldoContext;
 
         public TrabajadorService(CalculoSueldoContext calculoSueldoContext)
@@ -15,9 +17,9 @@ namespace PECANO.API.Service
             _trabajadores = LeerCsv("D:/TRABAJAR/HEARTBIT/ANGULAR NET/Examen PECANO/data-trabajadores.csv");
         }
 
-        private List<Trabajador> LeerCsv(string path)
+        private List<TrabajadorDto> LeerCsv(string path)
         {
-            var trabajadores = new List<Trabajador>();
+            var trabajadores = new List<TrabajadorDto>();
 
             if (!File.Exists(path))
             {
@@ -39,15 +41,11 @@ namespace PECANO.API.Service
                     var _faltas = int.Parse(values[3], CultureInfo.InvariantCulture);
                     var _tipoTrabajador = (TipoTrabajador)Enum.Parse(typeof(TipoTrabajador), values[4]);
 
-                    var trabajador = new Trabajador
+                    var trabajador = new TrabajadorDto
                     {
                         DNI = values[0],
-                        HorasLaboradas = _horasLaboradas,
-                        DiasLaborados = _diasLaborados,
-                        Faltas = _faltas,
                         TipoTrabajador = _tipoTrabajador,
                         Sueldo = _calculoSueldoContext.CalcularSueldo(_tipoTrabajador, _horasLaboradas, _diasLaborados, _faltas)
-                        
                     };
 
                     trabajadores.Add(trabajador);
@@ -57,12 +55,12 @@ namespace PECANO.API.Service
             return trabajadores;
         }
 
-        public IEnumerable<Trabajador> ObtenerTodos()
+        public IEnumerable<TrabajadorDto> ObtenerTodos()
         {
             return _trabajadores;
         }
 
-        public Trabajador ObtenerPorDNI(string dni)
+        public TrabajadorDto ObtenerPorDNI(string dni)
         {
             return _trabajadores.FirstOrDefault(t => t.DNI == dni);
         }

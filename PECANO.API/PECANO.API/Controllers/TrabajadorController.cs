@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using PECANO.API.Dto;
 using PECANO.API.Models;
 using PECANO.API.Service;
 
@@ -18,13 +19,13 @@ namespace PECANO.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Trabajador>> GetTrabajadores()
+        public ActionResult<IEnumerable<TrabajadorDto>> GetTrabajadores()
         {
             return Ok(_trabajadorService.ObtenerTodos());
         }
 
         [HttpGet("{dni}")]
-        public ActionResult<Trabajador> GetTrabajador(string dni)
+        public ActionResult<TrabajadorDto> GetTrabajador(string dni)
         {
             var trabajador = _trabajadorService.ObtenerPorDNI(dni);
             if (trabajador == null)
