@@ -10,10 +10,10 @@
     public class Trabajador
     {
         public string DNI { get; set; }
-        public string Nombre { get; set; }
-        public TipoTrabajador TipoTrabajador { get; set; }
         public decimal HorasLaboradas { get; set; }
         public int DiasLaborados { get; set; }
+        public int Faltas { get; set; }
+        public TipoTrabajador TipoTrabajador { get; set; }
         public decimal Sueldo { get; set; }
     }
 }
